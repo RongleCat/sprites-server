@@ -13,7 +13,17 @@ import type { HealthCheckResponse } from './types';
 export const app = new Hono();
 
 // 全局中间件
-app.use('*', cors());
+// CORS 配置：允许所有跨域访问
+app.use(
+  '*',
+  cors({
+    origin: '*', // 允许所有来源
+    allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'], // 允许所有常用方法
+    allowHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'], // 允许常用请求头
+    exposeHeaders: ['Content-Length', 'X-Request-Id'], // 暴露响应头
+    maxAge: 86400, // 预检请求缓存时间（24小时）
+  })
+);
 app.use('*', honoLogger());
 app.use('*', connectionMonitor());
 
