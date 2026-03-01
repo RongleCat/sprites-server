@@ -4,6 +4,7 @@
  */
 
 import { parentPort } from 'worker_threads';
+import { query } from '@anthropic-ai/claude-agent-sdk';
 import type { WorkerTaskMessage, WorkerMessage } from '../types';
 
 if (!parentPort) {
@@ -15,14 +16,11 @@ parentPort.on('message', async (msg: WorkerTaskMessage) => {
 
   try {
     // 设置隔离的环境变量
+    // Bun Worker 具有独立的 process.env 副本，不会影响主进程
     process.env.ANTHROPIC_API_KEY = apiKey;
     if (baseUrl) {
       process.env.ANTHROPIC_BASE_URL = baseUrl;
     }
-
-    // 动态导入 Claude Agent SDK
-    // 这确保每个 Worker 使用自己的环境变量
-    const { query } = await import('@anthropic-ai/claude-agent-sdk');
 
     // 执行 Agent 任务
     let eventCount = 0;
