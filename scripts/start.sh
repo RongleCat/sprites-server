@@ -25,7 +25,7 @@ mkdir -p logs
 
 # 启动服务
 echo "🔥 Starting with PM2..."
-pm2 start ecosystem.config.js --env production
+pm2 start ecosystem.config.cjs --env production
 
 # 保存 PM2 配置（用于系统重启后自动启动）
 pm2 save

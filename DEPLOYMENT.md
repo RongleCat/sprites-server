@@ -17,7 +17,7 @@ chmod +x scripts/start.sh
 
 ```bash
 # 启动服务
-pm2 start ecosystem.config.js --env production
+pm2 start ecosystem.config.cjs --env production
 
 # 查看状态
 pm2 status
@@ -92,10 +92,10 @@ pm2 restart sprites-agent-server
 
 ```bash
 # 开发环境
-pm2 start ecosystem.config.js --env development
+pm2 start ecosystem.config.cjs --env development
 
 # 生产环境
-pm2 start ecosystem.config.js --env production
+pm2 start ecosystem.config.cjs --env production
 ```
 
 ---
@@ -283,7 +283,7 @@ htop
 
 ```bash
 # 1. 使用 PM2 启动
-pm2 start ecosystem.config.js --env production
+pm2 start ecosystem.config.cjs --env production
 pm2 save
 
 # 2. 配置 PM2 开机启动
