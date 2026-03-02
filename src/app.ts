@@ -17,7 +17,7 @@ export const app = new Hono();
 app.use(
   '*',
   cors({
-    origin: '*', // 允许所有来源
+    origin: ['http://localhost:5173'], // 允许所有来源
     allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'], // 允许所有常用方法
     allowHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'], // 允许常用请求头
     exposeHeaders: ['Content-Length', 'X-Request-Id'], // 暴露响应头
